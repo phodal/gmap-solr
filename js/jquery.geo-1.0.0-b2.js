@@ -5440,7 +5440,7 @@ if ( ! $.widget ) {
 								coordinates: [ $.merge( [ ], coords ) ]
 							};
 							labelShape.coordinates[ 0 ].push( coords[ 0 ] );
-							
+
 							label = $.render[ this._tmplAreaId ]( { area: $.geo.area( labelShape, true ) } );
 							labelPixel = this._toPixel( $.geo.centroid( labelShape ).coordinates );
 							pixels = [ pixels ];

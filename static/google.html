@@ -54,10 +54,13 @@
 
             setMarkers(map, beaches);
             function setMarkers(map, locations) {
+                var marker = new Array();
+                var infowindow = new google.maps.InfoWindow();
+
                 for (var i = 0; i < locations.length; i++) {
                     var beach = locations[i];
                     var myLatLng = new google.maps.LatLng(beach[0], beach[1]);
-                    var marker = new google.maps.Marker({
+                    marker[i] = new google.maps.Marker({
                         position: myLatLng,
                         map: map,
                         title: "title"
@@ -73,14 +76,9 @@
                             '</div>' +
                             '</div>';
 
-                    var infowindow = new google.maps.InfoWindow({
-                        content: contentString
-                    });
-
-                    console.log(marker);
-
-                    google.maps.event.addListener(marker, 'click', function () {
-                        infowindow.open(map, marker);
+                    google.maps.event.addListener(marker[i], 'click', function () {
+                        infowindow.setContent(contentString);
+                        infowindow.open(map, this);
                     });
                 }
             }

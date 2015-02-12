@@ -1,0 +1,38 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Map</title>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/jquery.geo-1.0.0-b1.5.min.js"></script>
+    <script>
+        $(function() {
+            var map = $("#map").geomap({
+                center: [  11.21, 45.20  ],
+                zoom: 7,
+                mode: 'drawPolygon',
+
+                drawStyle: {
+                    color: 'red', //< ignored
+                    stroke: 'orange',
+                    fill: 'purple',
+
+                    opacity: 0.9,
+                    strokeOpacity: 0.5,
+                    fillOpacity: 0.8,
+
+                    strokeWidth: 7
+                },
+
+                shape: function(e, geo) {
+                    console.log(geo);
+                    map.geomap('append', geo);
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="map">
+</div>
+</body>
+</html>

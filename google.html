@@ -15,12 +15,56 @@
     <script>
         function initialize() {
             var mapOptions = {
-                center: new google.maps.LatLng(   45.20, 11.21),
-                zoom: 8
+                center: new google.maps.LatLng(45.4554270,9.2071370),
+                zoom: 15
             };
 
             var map = new google.maps.Map(document.getElementById('map-canvas'),
                     mapOptions);
+
+            var beaches = [
+                [45.4554270,9.2071370],
+                [45.4587830,9.2099190],
+                [45.4619690,9.2133200],
+                [45.4606450,9.2082960],
+                [45.4573210,9.2132640],
+                [45.4555630,9.2097250],
+                [45.4575280,9.2135270],
+                [45.4572540,9.2100840],
+                [45.4536550,9.2046210],
+                [45.4586710,9.2064460],
+                [45.4541030,9.2147660],
+                [45.4537910,9.2137300],
+                [45.4553890,9.2083050],
+                [45.4519660,9.2115030],
+                [45.4587830,9.2099190],
+                [45.4503060,9.2081150],
+                [45.4540800,9.2104800],
+                [45.4587830,9.2099190],
+                [45.4493920,9.2073910],
+                [45.4565730,9.2151390],
+                [45.4585300,9.2130040],
+                [45.4532660,9.2124520],
+                [45.4540940,9.2038150],
+                [45.4564880,9.2055930],
+                [45.4578420,9.2079550],
+                [45.4515620,9.2032960],
+                [45.4565640,9.2071550]
+            ];
+
+            setMarkers(map, beaches);
+            function setMarkers(map, locations) {
+                for (var i = 0; i < locations.length; i++) {
+                    var beach = locations[i];
+                    var myLatLng = new google.maps.LatLng(beach[0], beach[1]);
+                    var marker = new google.maps.Marker({
+                        position: myLatLng,
+                        map: map,
+                        title: "title"
+                    });
+                }
+            }
+
 
             var drawingManager = new google.maps.drawing.DrawingManager({
                 drawingMode: google.maps.drawing.OverlayType.MARKER,

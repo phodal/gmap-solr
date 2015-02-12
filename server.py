@@ -14,6 +14,8 @@ class All(Resource):
         return "", 201, {'Access-Control-Allow-Origin': '*'}
 
 
+api.add_resource(All, '/geo/')
+
 @app.route('/')
 def root():
     return app.send_static_file('google.html')

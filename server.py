@@ -12,11 +12,10 @@ api = restful.Api(app)
 class All(Resource):
     @staticmethod
     def get():
-        print request.query_string
         base_url = ''
         query = request.query_string
         result = requests.get((base_url + ('select?q=' + query)))
-        return (result.json()), 201, {'Access-Control-Allow-Origin': '*'}
+        return (result.json()['response']['docs']), 201, {'Access-Control-Allow-Origin': '*'}
 
 
 api.add_resource(All, '/geo/')

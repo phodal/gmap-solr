@@ -92,6 +92,12 @@
                 }
             });
             drawingManager.setMap(map);
+            google.maps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
+                drawingManager.setDrawingMode(null);
+                var arr=[];
+                polygon.getPath().forEach(function(latLng){arr.push(latLng.toString());});
+                console.log(arr.join(',\n'));
+            });
         }
 
         google.maps.event.addDomListener(window, 'load', initialize);

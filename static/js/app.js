@@ -46,32 +46,21 @@ function initialize() {
             for (var i = 0; i < results.length; i++) {
                 var location = results[i].geo[0].split(',');
                 var myLatLng = new google.maps.LatLng(location[0], location[1]);
+                var title = results[i].title;
                 marker = new google.maps.Marker({
                     position: myLatLng,
                     map: map,
-                    title: results[i].tagline
+                    title: title
                 });
 
-                contentString = '<div id="content">' +
-                '<div id="siteNotice">' +
-                '</div>' +
-                '<h1 id="firstHeading" class="firstHeading">' + results[i].tagline + '</h1>' +
-                '<div id="bodyContent">' +
-                '<p>' + results[i].description.substring(0,144) + '</p>' +
-                '<p> Price: ' + results[i].listprice + '<br/>' +
-                ' Beds:' + results[i].numbeds + '<br/>' +
-                ' Baths:' + results[i].numfullbaths + '<br/>' +
-                ' Parking Space:' + results[i].parkingspaces + '</p>' +
-                '<a href="/' + results[i].documentid + '">More Info</a>' +
-                '</div>' +
-                '</div>';
+                contentString = '<h1>City</h1><br/> address ' + i + '';
 
-                google.maps.event.addListener(marker,'click', (function(marker,contentString,infowindow){
-                    return function() {
-                       infowindow.setContent(contentString);
-                       infowindow.open(map,marker);
+                google.maps.event.addListener(marker, 'click', (function (marker, contentString, infowindow) {
+                    return function () {
+                        infowindow.setContent(contentString);
+                        infowindow.open(map, marker);
                     };
-                })(marker,contentString,infowindow));
+                })(marker, contentString, infowindow));
             }
         });
         console.log(query);

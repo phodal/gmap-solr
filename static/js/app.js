@@ -31,7 +31,8 @@ function initialize() {
     });
 
     drawingManager.setMap(map);
-    google.maps.event.addListener(drawingManager, 'polygoncomplete', function (polygon) {
+
+    var renderMarker = function (polygon) {
         drawingManager.setDrawingMode(null);
         var arr = [];
         polygon.getPath().forEach(function (latLng) {
@@ -64,7 +65,9 @@ function initialize() {
             }
         });
         console.log(query);
-    });
+    };
+
+    google.maps.event.addListener(drawingManager, 'polygoncomplete', renderMarker);
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);

@@ -21,9 +21,14 @@ class All(Resource):
 api.add_resource(All, '/geo/')
 
 
-@app.route('/')
+@app.route('/google')
 def root():
     return app.send_static_file('google.html')
+
+
+@app.route('/')
+def root():
+    return app.send_static_file('index.html')
 
 
 @app.route('/<path:path>')

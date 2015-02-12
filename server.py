@@ -13,8 +13,8 @@ class All(Resource):
     @staticmethod
     def get():
         base_url = ''
-        query = request.query_string
-        result = requests.get((base_url + ('select?q=' + query)))
+        url = (base_url + 'select?q=' + request.query_string + '+&wt=json&indent=true')
+        result = requests.get(url)
         return (result.json()['response']['docs']), 201, {'Access-Control-Allow-Origin': '*'}
 
 

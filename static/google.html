@@ -115,9 +115,15 @@
                 drawingManager.setDrawingMode(null);
                 var arr = [];
                 polygon.getPath().forEach(function (latLng) {
-                    arr.push(latLng.toString());
+                    arr.push(latLng.D.toString() + " " + latLng.k.toString());
                 });
-                console.log(arr.join(',\n'));
+                arr.push(arr[0]);
+                var query = 'geo:"IsWithin(POLYGON((' + arr + '))) distErrPct=0"';
+                $.get('/geo/?' + query, function (results) {
+                    console.log(results);
+                });
+                console.log(query);
+
             });
         }
 

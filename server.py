@@ -1,23 +1,26 @@
-import json
-import logging
-import uuid
-from wsgiref import simple_server
+from flask import Flask
+from flask.ext import restful
+from flask_restful import Resource
 
-import falcon
-import requests
+app = Flask(__name__, static_url_path='')
+app.secret_key = 'why would I tell you my secret key?'
 
-class SinkAdapter(object):
-    def __call__(self, req, resp):
-        params = {'q': req.get_param('q', True)}
-        print params
-        resp.body = "something"
+api = restful.Api(app)
 
-app = falcon.API()
 
-sink = SinkAdapter()
-app.add_sink(sink, r'/search/geo')
+class All(Resource):
+    @staticmethod
+    def get():
+        return "", 201, {'Access-Control-Allow-Origin': '*'}
 
-# Useful for debugging problems in your API; works with pdb.set_trace()
+
+@app.route('/')
+def root():
+    return app.send_static_file('google.html')
+
+@app.route('/<path:path>')
+def static_proxy(path):
+    return app.send_static_file(path)
+
 if __name__ == '__main__':
-    httpd = simple_server.make_server('127.0.0.1', 8000, app)
-    httpd.serve_forever()
+    app.run(debug=True)

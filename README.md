@@ -4,6 +4,10 @@
 
      pip install -r requrements.txt
      
-2.run server
+2.change base ul in server.py
+
+3.run server
      
      python server.py
+
+     

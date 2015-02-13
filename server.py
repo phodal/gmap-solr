@@ -22,7 +22,7 @@ api.add_resource(All, '/geo/')
 
 
 @app.route('/google')
-def root():
+def google():
     return app.send_static_file('google.html')
 
 

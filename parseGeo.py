@@ -4,8 +4,7 @@
 import json
 from pprint import pprint
 
-json_data = open('data/report.json')
-
-data = json.load(json_data)
+with open(unicode('data/report.json')) as data_file:
+    print data_file
+    data = json.load(data_file)
 pprint(data)
-json_data.close()

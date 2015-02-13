@@ -29,7 +29,6 @@ function initialize() {
             zIndex: 1
         }
     });
-
     drawingManager.setMap(map);
 
     var renderMarker = function (polygon) {
@@ -64,7 +63,6 @@ function initialize() {
                 })(marker, contentString, infowindow));
             }
         });
-        console.log(query);
     };
 
     google.maps.event.addListener(drawingManager, 'polygoncomplete', renderMarker);
